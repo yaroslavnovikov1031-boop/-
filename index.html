@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Имена на карте Кемерова</title>
+<style>
+:root{--bg:#EDF1F3;--panel:#fff;--ink:#17262E;--mute:#5A6B74;--line:#CBD5DA;--river:#BCDCEA;--accent:#17262E;
+--h:#C2185B;--e:#5E35B1;--g:#00897B;--p:#E08A00;--i:#689F38;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10191E;--panel:#1A272E;--ink:#EAF0F2;--mute:#9DB0B8;--line:#33454E;--river:#244B5C;--accent:#EAF0F2;--h:#F06292;--e:#9575CD;--g:#4DB6AC;--p:#FFB74D;--i:#9CCC65;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10191E;--panel:#1A272E;--ink:#EAF0F2;--mute:#9DB0B8;--line:#33454E;--river:#244B5C;--accent:#EAF0F2;--h:#F06292;--e:#9575CD;--g:#4DB6AC;--p:#FFB74D;--i:#9CCC65;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Arial,Helvetica,sans-serif}
+header{padding:28px 20px 8px;max-width:1180px;margin:0 auto}
+h1{font:600 clamp(24px,5vw,40px)/1.15 Georgia,"Times New Roman",serif;margin:0 0 8px}
+header p{margin:0;color:var(--mute);max-width:60ch}
+main{max-width:1180px;margin:0 auto;padding:12px 20px 40px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+.tabs button,.chip,.btn{font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 14px;border-radius:8px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.chip{display:inline-flex;gap:8px;align-items:center;padding:6px 12px}.chip i{width:14px;height:14px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed=true]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+input[type=search]{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);min-width:200px;flex:1;max-width:320px}
+:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:18px;align-items:start}
+@media(max-width:860px){.layout{grid-template-columns:1fr}}
+.map,.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
+.card{padding:18px 20px;min-height:260px}
+svg{width:100%;height:auto;display:block}
+.river{fill:none;stroke:var(--river);stroke-width:46;stroke-linecap:round}
+.ln{fill:none;stroke:var(--c);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;transition:opacity .2s}
+.st{cursor:pointer}.st:hover .ln,.st:focus .ln{stroke-width:13}.st.sel .ln{stroke-width:14}
+.st.dim{opacity:.18}.st:focus{outline:none}
+.lb{font:600 13px Arial,Helvetica,sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--panel);stroke-width:4px;pointer-events:none}
+.dot{fill:var(--panel);stroke:var(--c);stroke-width:6}.done{fill:var(--c)}
+.note{color:var(--mute);font-size:14px;margin:8px 4px 0}
+.tag{display:inline-block;color:var(--c);font-weight:600;font-size:15px}
+.card h2{font:600 22px/1.25 Georgia,"Times New Roman",serif;margin:4px 0 10px}
+.who{font-weight:600;margin:0 0 8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn.on{background:var(--g);border-color:var(--g);color:#fff}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:6px 0}.prog b{display:block;height:100%;background:var(--g);width:0;transition:width .3s}
+.opts{display:grid;gap:8px;margin:12px 0}.opts button{text-align:left}
+.opts .ok{background:var(--g);color:#fff;border-color:var(--g)}.opts .no{border-color:var(--h);box-shadow:inset 0 0 0 1px var(--h)}
+a.btn{text-decoration:none;display:inline-block}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+footer{max-width:1180px;margin:0 auto;padding:0 20px 28px;color:var(--mute);font-size:14px}
+.real{margin:26px 0 8px}.real h2{font:600 22px/1.3 Georgia,serif;margin:0 0 6px}.realmap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:8px;min-height:120px}
+</style>
+</head>
+<body>
+<header>
+<h1>Имена на карте Кемерова</h1>
+<p>Нажми на линию или площадь на схеме — узнаешь, в честь кого или чего названа улица. Потом проверь себя в викторине.</p>
+</header>
+<main>
+<div class="bar">
+<div class="tabs" role="tablist"><button role="tab" id="tm" aria-selected="true">Схема</button> <button role="tab" id="tq" aria-selected="false">Проверь себя</button></div>
+<input type="search" id="q" placeholder="Найти улицу" aria-label="Найти улицу">
+</div>
+<div class="bar" id="chips" role="group" aria-label="Тип названия"></div>
+<div class="layout">
+<div class="map"><svg id="svg" viewBox="0 0 800 520" role="group" aria-label="Схема улиц Кемерова">
+<path class="river" d="M-20 400 C 200 360 420 320 820 210"/>
+<text x="560" y="300" class="lb" style="font-weight:400;fill:var(--mute)" transform="rotate(-15 560 300)">река Томь</text>
+<g id="streets"></g></svg>
+<p class="note">Это схема, а не точная карта: расположение улиц условное, как на схеме метро. Реальную карту смотри на Яндексе.</p></div>
+<section class="card" id="card" aria-live="polite"></section>
+</div>
+<section class="real">
+<h2>Настоящая карта Кемерова</h2>
+<p class="note">Ниже карта из Конструктора карт Яндекса. Нажимайте на метки, чтобы увидеть описания. Нужен интернет. Если карта не появилась, откройте её кнопкой ниже.</p>
+<div class="realmap">
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8d315cde0f5260a9071aa078e52258f344ad55af567427156c170c244280b8d3&amp;width=1200&amp;height=700&amp;lang=ru_RU&amp;scroll=true"></script>
+</div>
+</section>
+<div class="bar"><a class="btn" target="_blank" rel="noopener" href="https://yandex.ru/maps/?um=constructor%3A8d315cde0f5260a9071aa078e52258f344ad55af567427156c170c244280b8d3&amp;source=constructorLink">Открыть настоящую карту Яндекса</a>
+<button class="btn" id="theme">Тёмная тема</button></div>
+</main>
+<footer>Индивидуальный итоговый проект «Имена на карте родного края». Автор: Новиков Ярослав Антонович, 6 «А» класс. Руководитель: Ларина Татьяна Юрьевна. Кемерово, 2026–2027 уч. год.</footer>
+<script>
+var T={h:["В честь человека","var(--h)"],e:["Эпоха, идея","var(--e)"],g:["География","var(--g)"],p:["Профессия","var(--p)"],i:["Образное название","var(--i)"]};
+var S=[
+{id:"len",n:"проспект Ленина",t:"h",who:"Владимир Ильич Ленин",s:"Владимир Ильич Ленин (1870–1924) — основатель Советского государства. Названия в честь руководителей государства были обычны для городов СССР.",pt:[[60,100],[300,100],[370,170],[740,170]],l:[80,90]},
+{id:"sov",n:"Советский проспект",t:"e",who:"Советская власть",s:"Название связано с эпохой, а не с человеком. Прежде это была улица Советская, одна из главных трасс города.",pt:[[60,200],[250,200],[320,270],[740,270]],l:[80,190]},
+{id:"kuz",n:"Кузнецкий проспект",t:"g",who:"Кузнецкая земля",s:"Названа по Кузнецкой земле, где добывали уголь. Прежде улица называлась Московской, затем Вокзальной.",pt:[[130,50],[130,350],[190,410],[400,410]],l:[200,398]},
+{id:"sha",n:"проспект Шахтёров",t:"p",who:"шахтёры Кузбасса",s:"Название прославляет шахтёров — людей, которые добывают уголь. Для шахтёрского края оно особенно важно.",pt:[[430,50],[430,130],[520,220],[520,420]],l:[532,410]},
+{id:"ves",n:"улица Весенняя",t:"i",who:"время года — весна",s:"Одна из старейших и самых живописных улиц центра, любимый городской променад. Первые упоминания — 1950-е годы. Точное происхождение названия предстоит уточнить.",pt:[[560,50],[700,50],[740,90]],l:[560,38]},
+{id:"kra",n:"улица Красноармейская",t:"e",who:"Красная армия",s:"Название связано с Красной армией и отражает эпоху, в которую улица получила имя.",pt:[[70,450],[240,450],[290,500],[420,500]],l:[80,438]},
+{id:"suv",n:"улица Суворова",t:"h",who:"полководец Александр Суворов",s:"Александр Васильевич Суворов (1730–1800) — великий русский полководец. Его имя носят улицы во многих городах России.",pt:[[600,330],[690,330],[740,380]],l:[600,320]},
+{id:"myz",n:"улица Мызо",t:"h",who:"Герой Советского Союза Владимир Мызо",s:"Названа в честь Героя Советского Союза Владимира Ивановича Мызо, участника Великой Отечественной войны. На улице установлена памятная звезда.",pt:[[570,430],[650,430],[700,470]],l:[570,420]},
+{id:"ste",n:"улица Н. Степанова",t:"h",who:"Герой Советского Союза Николай Степанов",s:"Названа в честь Героя Советского Союза Николая Петровича Степанова. Находится рядом с улицей Мызо, на ней тоже есть памятная звезда.",pt:[[600,500],[720,500]],l:[600,490]},
+{id:"vol",n:"площадь Волкова",t:"h",who:"рудознатец Михайло Волков",s:"Михайло Волков в 1721 году нашёл «Горелую гору» — выход горящего угля вблизи нынешнего Кемерова. На площади стоит памятник первооткрывателю кузнецкого угля.",pt:[[360,220]],l:[378,226]},
+{id:"pri",n:"Притомская набережная",t:"g",who:"река Томь",s:"Название показывает расположение: набережная идёт вдоль реки Томь. Внутри названия спрятан гидроним — название реки.",pt:[[40,365],[220,328],[430,290],[620,240],[760,205]],l:[250,340]},
+{id:"str",n:"бульвар Строителей",t:"p",who:"строители",s:"Название прославляет строителей — людей созидательной профессии, которые создают город.",pt:[[150,140],[260,140],[290,160]],l:[150,130]}
+];
+var $=function(x){return document.getElementById(x)},cur=null,type=null,done={},mode="m",NS="http://www.w3.org/2000/svg";
+try{done=JSON.parse(localStorage.getItem("kem-done")||"{}")}catch(e){done={}}
+function save(){try{localStorage.setItem("kem-done",JSON.stringify(done))}catch(e){}}
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+var g=$("streets");
+S.forEach(function(s){
+ var o=el("g",{"class":"st",tabindex:0,role:"button","aria-label":s.n,"data-id":s.id},g);o.style.setProperty("--c",T[s.t][1]);
+ if(s.pt.length>1)el("polyline",{"class":"ln",points:s.pt.map(function(p){return p.join(",")}).join(" ")},o);
+ else{el("circle",{"class":"dot",cx:s.pt[0][0],cy:s.pt[0][1],r:15},o)}
+ var d=el("circle",{"class":"done",cx:s.pt[s.pt.length-1][0],cy:s.pt[s.pt.length-1][1],r:7,display:"none","data-d":s.id},o);
+ var t=el("text",{"class":"lb",x:s.l[0],y:s.l[1]},o);t.textContent=s.n;
+ o.onclick=function(){pick(s.id)};o.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(s.id)}};
+ s.node=o;
+});
+var cb=$("chips");
+Object.keys(T).forEach(function(k){var b=document.createElement("button");b.className="chip";b.setAttribute("aria-pressed","false");b.style.setProperty("--c",T[k][1]);b.innerHTML="<i></i>"+T[k][0];
+ b.onclick=function(){type=(type===k)?null:k;[].forEach.call(cb.children,function(c,i){c.setAttribute("aria-pressed",Object.keys(T)[i]===type)});filter()};cb.appendChild(b)});
+function filter(){var q=$("q").value.trim().toLowerCase();
+ S.forEach(function(s){var ok=(!type||s.t===type)&&(!q||s.n.toLowerCase().indexOf(q)>-1||s.who.toLowerCase().indexOf(q)>-1);s.node.classList.toggle("dim",!ok)})}
+$("q").oninput=filter;
+function count(){return S.filter(function(s){return done[s.id]}).length}
+function marks(){S.forEach(function(s){g.querySelector('[data-d="'+s.id+'"]').setAttribute("display",done[s.id]?"inline":"none")})}
+function pick(id){cur=id;S.forEach(function(s){s.node.classList.toggle("sel",s.id===id)});show()}
+function show(){var c=$("card");if(mode==="q")return;
+ if(!cur){c.innerHTML='<h2>Выбери улицу</h2><p>Нажми на любую линию на схеме. Цвет линии показывает тип названия.</p><p>Изучено: '+count()+' из '+S.length+'</p><div class="prog"><b style="width:'+count()/S.length*100+'%"></b></div>';return}
+ var i=S.findIndex(function(s){return s.id===cur}),s=S[i],isd=!!done[s.id];
+ c.style.setProperty("--c",T[s.t][1]);
+ c.innerHTML='<span class="tag">'+T[s.t][0]+'</span><h2>'+s.n+'</h2><p class="who">В честь кого или чего: '+s.who+'</p><p>'+s.s+'</p>'+
+ '<div class="prog"><b style="width:'+count()/S.length*100+'%"></b></div><div class="note">Изучено: '+count()+' из '+S.length+'</div>'+
+ '<div class="row"><button class="btn'+(isd?" on":"")+'" id="dn">'+(isd?"Изучено":"Отметить изученной")+'</button><button class="btn" id="pv">Назад</button><button class="btn" id="nx">Дальше</button></div>';
+ $("dn").onclick=function(){done[s.id]=!done[s.id];save();marks();show()};
+ $("pv").onclick=function(){pick(S[(i+S.length-1)%S.length].id)};$("nx").onclick=function(){pick(S[(i+1)%S.length].id)}}
+var Q=[],qi=0,sc=0;
+function shuffle(a){return a.slice().sort(function(){return Math.random()-.5})}
+function startQ(){Q=shuffle(S).slice(0,5);qi=0;sc=0;ask()}
+function ask(){var c=$("card");c.style.setProperty("--c","var(--g)");
+ if(qi>=Q.length){c.innerHTML='<h2>Результат: '+sc+' из '+Q.length+'</h2><p>'+(sc>=4?"Отлично! Ты хорошо знаешь названия улиц.":"Загляни в карточки на схеме и попробуй ещё раз.")+'</p><div class="row"><button class="btn" id="ag">Ещё раз</button></div>';$("ag").onclick=startQ;return}
+ var s=Q[qi],opts=shuffle([s.who].concat(shuffle(S.filter(function(x){return x.who!==s.who}).map(function(x){return x.who})).slice(0,2)));
+ c.innerHTML='<span class="tag">Вопрос '+(qi+1)+' из '+Q.length+'</span><h2>'+s.n+'</h2><p class="who">В честь кого или чего названа эта улица?</p><div class="opts"></div><div id="fb"></div>';
+ var box=c.querySelector(".opts");
+ opts.forEach(function(o){var b=document.createElement("button");b.className="btn";b.textContent=o;b.onclick=function(){
+  [].forEach.call(box.children,function(x){x.disabled=true;if(x.textContent===s.who)x.className="btn ok"});
+  var right=o===s.who;if(right){sc++;done[s.id]=true;save();marks()}else b.className="btn no";
+  $("fb").innerHTML='<p><b>'+(right?"Верно!":"Не совсем.")+'</b> '+s.s+'</p><div class="row"><button class="btn" id="nq">'+(qi+1<Q.length?"Дальше":"Показать результат")+'</button></div>';
+  $("nq").onclick=function(){qi++;ask()}};box.appendChild(b)})}
+function setMode(m){mode=m;$("tm").setAttribute("aria-selected",m==="m");$("tq").setAttribute("aria-selected",m==="q");if(m==="q")startQ();else show()}
+$("tm").onclick=function(){setMode("m")};$("tq").onclick=function(){setMode("q")};
+$("theme").onclick=function(){var d=document.documentElement,dark=d.getAttribute("data-theme")==="dark"||(!d.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme:dark)").matches);d.setAttribute("data-theme",dark?"light":"dark");$("theme").textContent=dark?"Тёмная тема":"Светлая тема"};
+marks();show();
+</script>
+</body>
+</html>
